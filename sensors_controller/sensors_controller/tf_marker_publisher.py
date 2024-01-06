@@ -11,12 +11,7 @@ class TFMarkerPublisher(Node):
     def __init__(self):
         super().__init__('tf_marker_publisher')
         self.marker_publisher = self.create_publisher(Marker, 'tf_markers', 10)
-        self.subscriber = self.create_subscription(
-            Float64MultiArray,
-            'microros',
-            self.microros_callback,
-            10
-        )
+        self.subscriber = self.create_subscription(Float64MultiArray,'microros', self.microros_callback,10)
         self.buffer = Buffer()
         self.tf_listener = TransformListener(self.buffer, self)
         self.timer = self.create_timer(0.7, self.publish_markers)
@@ -120,26 +115,7 @@ class TFMarkerPublisher(Node):
 
                 self.marker_publisher.publish(marker_msg)
                 self.num_markers += 1
-                #self.get_logger().info(f"Total number of markers published: {self.num_markers}")
-
-                # # Tworzenie nowej instancji Marker z aktualizowanym kolorem
-                # updated_marker_msg = Marker()
-                # updated_marker_msg.header = marker_msg.header
-                # updated_marker_msg.ns = marker_msg.ns
-                # updated_marker_msg.id = marker_msg.id
-                # updated_marker_msg.type = marker_msg.type
-                # updated_marker_msg.action = marker_msg.action
-                # updated_marker_msg.pose = marker_msg.pose
-                # updated_marker_msg.scale = marker_msg.scale
-
-                # updated_marker_msg.color.r = 0.0  # Nowy kolor - czerwony
-                # updated_marker_msg.color.g = 0.0
-                # updated_marker_msg.color.b = 1.0
-                # updated_marker_msg.color.a = 1.0
-
-                # self.marker_publisher.publish(updated_marker_msg)
-                #self.get_logger().info(f"Updated marker with ID {joint_id}")
-
+                
             except Exception as e:
                 self.get_logger().error(f"Error publishing marker for {joint_name}: {str(e)}")
 
