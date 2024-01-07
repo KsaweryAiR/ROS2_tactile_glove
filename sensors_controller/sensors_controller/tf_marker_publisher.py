@@ -1,4 +1,5 @@
 import rclpy
+import numpy as np
 from rclpy.node import Node
 from rclpy.qos import QoSProfile
 from std_msgs.msg import Header, Float64MultiArray
@@ -15,11 +16,22 @@ class TFMarkerPublisher(Node):
         self.buffer = Buffer()
         self.tf_listener = TransformListener(self.buffer, self)
         self.timer = self.create_timer(0.7, self.publish_markers)
-        self.num_markers = 0  # Inicjalizacja licznika markerów
+        self.microros_data = np.zeros(19)
 
     def microros_callback(self, msg):
         # Obsługa odebranych danych z tematu 'microros'
-        self.get_logger().info(f'Odebrano dane z tematu microros: {msg.data}')
+        #self.get_logger().info(f'Odebrano dane z tematu microros: {msg.data}')
+        self.microros_data = msg.data if msg.data else np.zeros(19)
+    
+    def color_marker(self, marker_msg, microros_data, joint_id):
+        marker_msg.color.b = 0.0
+        marker_msg.color.a = 1.0
+        if microros_data <= 1.0 :
+            marker_msg.color.r = microros_data
+            marker_msg.color.g = 1.0
+        else:
+            marker_msg.color.g = 2.0 - microros_data
+            marker_msg.color.r = 1.0
 
     def publish_markers(self):
         finger_joints = [
@@ -44,41 +56,29 @@ class TFMarkerPublisher(Node):
             ('left_hand_pinky3', 51)
         ]
 
-        for joint_name, joint_id in finger_joints:
+        #for joint_name, joint_id in finger_joints:
+        for i, (joint_name, joint_id) in enumerate(finger_joints):
             try:
                 transform = self.buffer.lookup_transform('left_hand_base_link', joint_name, rclpy.time.Time())
                 position = transform.transform.translation
-
                 # position correction
-                if joint_id in [23, 33, 43, 53]:
-                    position.z += 0.005
-                
-                if joint_id in [11]:
-                    position.z += 0.003
-
-                if joint_id in [12]:
-                    position.x +=0.042
-                    position.z += 0.1
-                    
-                if joint_id in [13]:
-                    position.x +=0.011
-                    position.z += 0.105
-
-                if joint_id in [14]:
-                    position.x -=0.022
-                    position.z += 0.105
-                
-                if joint_id in [15]:
-                    position.x -=0.007
-                    position.z += 0.003
-                
-                if joint_id in [16]:
-                    position.z += 0.07
-
-                if joint_id in [17]:
-                    position.x +=0.038
-                    position.z += 0.06
-
+                joint_corrections = {
+                    23: {'z': 0.005},
+                    33: {'z': 0.005},
+                    43: {'z': 0.005},
+                    53: {'z': 0.005},
+                    11: {'z': 0.003},
+                    12: {'x': -0.022, 'z': 0.105},
+                    13: {'x': 0.011, 'z': 0.105},
+                    14: {'x': 0.042, 'z': 0.1},
+                    15: {'x': -0.007, 'z': 0.003},
+                    16: {'z': 0.07},
+                    17: {'x': 0.038, 'z': 0.06},
+                }
+                if joint_id in joint_corrections:
+                    corrections = joint_corrections[joint_id]
+                    position.x += corrections.get('x', 0)
+                    position.z += corrections.get('z', 0)
 
                 marker_msg = Marker()
                 marker_msg.header = Header()
@@ -107,15 +107,11 @@ class TFMarkerPublisher(Node):
                     marker_msg.scale.y = 0.015
                     marker_msg.scale.z = 0.015
 
-
-                marker_msg.color.r = 1.0
-                marker_msg.color.g = 0.0
-                marker_msg.color.b = 0.0
-                marker_msg.color.a = 1.0
+                self.color_marker(marker_msg, self.microros_data[i], joint_id)
+                
 
                 self.marker_publisher.publish(marker_msg)
-                self.num_markers += 1
-                
+                #self.get_logger().error(f"to są moje colory {joint_id}: {i} {str(self.microros_data[i])}")
             except Exception as e:
                 self.get_logger().error(f"Error publishing marker for {joint_name}: {str(e)}")
 
