@@ -31,11 +31,11 @@ class TFMarkerPublisher(Node):
         # Color markers based on microros data
         marker_msg.color.b = 0.0
         marker_msg.color.a = 1.0
-        if microros_data <= 1.0:
-            marker_msg.color.r = microros_data
+        if microros_data <= 10.0:
+            marker_msg.color.r = microros_data/10
             marker_msg.color.g = 1.0
         else:
-            marker_msg.color.g = 2.0 - microros_data
+            marker_msg.color.g = (20.0 - microros_data)/10
             marker_msg.color.r = 1.0
 
     def publish_markers(self):
@@ -112,7 +112,7 @@ class TFMarkerPublisher(Node):
                     marker_msg.scale.y = 0.015
                     marker_msg.scale.z = 0.015
 
-                self.color_marker(marker_msg, self.microros_data[i], joint_id)
+                self.color_marker(marker_msg, round(self.microros_data[i],1), joint_id)
 
                 marker_array_msg.markers.append(marker_msg)  # Add marker to MarkerArray
 

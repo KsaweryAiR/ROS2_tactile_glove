@@ -104,16 +104,16 @@ class TFTextPublisher(Node):
                 marker_msg.pose.orientation.z = 0.0
                 marker_msg.pose.orientation.w = 1.0
 
-                marker_msg.scale.x = 0.01
-                marker_msg.scale.y = 0.01
-                marker_msg.scale.z = 0.01
+                marker_msg.scale.x = 0.007
+                marker_msg.scale.y = 0.007
+                marker_msg.scale.z = 0.007
 
                 marker_msg.color.r = 0.0
                 marker_msg.color.g = 0.0
                 marker_msg.color.b = 0.0
                 marker_msg.color.a = 1.0
 
-                marker_msg.text = str(self.microros_data[i])
+                marker_msg.text = str(round(self.microros_data[i],1))
                 marker_array_msg.markers.append(marker_msg)
             except Exception as e:
                 self.get_logger().error(f"Error publishing marker for {joint_name}: {str(e)}")
