@@ -62,18 +62,18 @@ class TFTextPublisher(Node):
                 position = transform.transform.translation
                 # Position correction based on joint ID
                 joint_corrections = {
-                    21: {'z': -0.007},
-                    22: {'z': -0.006},
+                    21: {'z': -0.006, 'x': 0.001},
+                    22: {'z': -0.005, 'x': 0.001},
                     23: {'z': 0.0015, 'x': 0.001},
                     31: {'z': -0.007},
                     32: {'z': -0.006},
-                    33: {'z': 0.0015, 'x': 0.001},
-                    41: {'z': -0.007},
-                    42: {'z': -0.006, 'x': -0.001},
+                    33: {'z': 0.0015, 'x': -0.0005},
+                    41: {'z': -0.006, 'x': -0.001},
+                    42: {'z': -0.005, 'x': -0.001},
                     43: {'z': 0.0015, 'x': -0.001},
-                    51: {'z': -0.007, 'x': -0.003},
-                    52: {'z': -0.006, 'x': -0.003},
-                    53: {'z': 0.0015, 'x': -0.002},
+                    51: {'z': -0.005, 'x': -0.002},
+                    52: {'z': -0.004, 'x': -0.002},
+                    53: {'z': 0.0017, 'x': -0.002},
                     11: {'z': 0.001, 'x': 0.003},
                     12: {'z': 0.103, 'x': -0.021},
                     13: {'z': 0.103, 'x': 0.011},
@@ -104,9 +104,9 @@ class TFTextPublisher(Node):
                 marker_msg.pose.orientation.z = 0.0
                 marker_msg.pose.orientation.w = 1.0
 
-                marker_msg.scale.x = 0.007
-                marker_msg.scale.y = 0.007
-                marker_msg.scale.z = 0.007
+                marker_msg.scale.x = 0.006
+                marker_msg.scale.y = 0.006
+                marker_msg.scale.z = 0.006
 
                 marker_msg.color.r = 0.0
                 marker_msg.color.g = 0.0
