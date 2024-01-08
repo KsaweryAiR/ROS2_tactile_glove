@@ -4,29 +4,34 @@ from rclpy.node import Node
 from rclpy.qos import QoSProfile
 from std_msgs.msg import Header, Float64MultiArray
 from geometry_msgs.msg import Point
-from visualization_msgs.msg import Marker
+from visualization_msgs.msg import Marker, MarkerArray
 from tf2_ros import TransformListener, Buffer
-import tf2_geometry_msgs
+import tf2_geometry_msgs  # Import for tf2_geometry_msgs transformations
 
 class TFMarkerPublisher(Node):
     def __init__(self):
         super().__init__('tf_marker_publisher')
-        self.marker_publisher = self.create_publisher(Marker, 'tf_markers', 10)
-        self.subscriber = self.create_subscription(Float64MultiArray,'microros', self.microros_callback,10)
+        # Publisher for markers
+        self.marker_publisher = self.create_publisher(MarkerArray, 'tf_markers', 10)
+        # Subscriber for microros data
+        self.subscriber = self.create_subscription(Float64MultiArray, 'microros', self.microros_callback, 10)
+        # TF buffer and listener
         self.buffer = Buffer()
         self.tf_listener = TransformListener(self.buffer, self)
-        self.timer = self.create_timer(0.7, self.publish_markers)
+        # Timer for periodic marker publishing
+        self.timer = self.create_timer(0.1, self.publish_markers)
+        # Initialize microros data array
         self.microros_data = np.zeros(19)
 
     def microros_callback(self, msg):
-        # Obsługa odebranych danych z tematu 'microros'
-        #self.get_logger().info(f'Odebrano dane z tematu microros: {msg.data}')
+        # Update microros data on callback
         self.microros_data = msg.data if msg.data else np.zeros(19)
-    
+
     def color_marker(self, marker_msg, microros_data, joint_id):
+        # Color markers based on microros data
         marker_msg.color.b = 0.0
         marker_msg.color.a = 1.0
-        if microros_data <= 1.0 :
+        if microros_data <= 1.0:
             marker_msg.color.r = microros_data
             marker_msg.color.g = 1.0
         else:
@@ -34,6 +39,8 @@ class TFMarkerPublisher(Node):
             marker_msg.color.r = 1.0
 
     def publish_markers(self):
+        marker_array_msg = MarkerArray()
+        # List of finger joints and their corresponding IDs
         finger_joints = [
             ('left_hand_thumb1', 15),
             ('left_hand_thumb3', 11),
@@ -56,12 +63,12 @@ class TFMarkerPublisher(Node):
             ('left_hand_pinky3', 51)
         ]
 
-        #for joint_name, joint_id in finger_joints:
         for i, (joint_name, joint_id) in enumerate(finger_joints):
             try:
+                # Lookup transform from base link to finger joint
                 transform = self.buffer.lookup_transform('left_hand_base_link', joint_name, rclpy.time.Time())
                 position = transform.transform.translation
-                # position correction
+
                 joint_corrections = {
                     23: {'z': 0.005},
                     33: {'z': 0.005},
@@ -90,30 +97,30 @@ class TFMarkerPublisher(Node):
 
                 marker_msg.type = Marker.SPHERE
                 marker_msg.action = Marker.ADD
-                marker_msg.pose.position = Point(x=position.x, y=position.y+0.01, z=position.z)
+                marker_msg.pose.position = Point(x=position.x, y=position.y + 0.01, z=position.z)
                 marker_msg.pose.orientation.x = 0.0
                 marker_msg.pose.orientation.y = 0.0
                 marker_msg.pose.orientation.z = 0.0
                 marker_msg.pose.orientation.w = 1.0
 
-                #large sensors
                 if joint_id in [11, 12, 13, 14, 15, 16, 17]:
                     marker_msg.scale.x = 0.024
                     marker_msg.scale.y = 0.024
                     marker_msg.scale.z = 0.024
-                #small sensors
                 else:
                     marker_msg.scale.x = 0.015
                     marker_msg.scale.y = 0.015
                     marker_msg.scale.z = 0.015
 
                 self.color_marker(marker_msg, self.microros_data[i], joint_id)
-                
 
-                self.marker_publisher.publish(marker_msg)
-                #self.get_logger().error(f"to są moje colory {joint_id}: {i} {str(self.microros_data[i])}")
+                marker_array_msg.markers.append(marker_msg)  # Add marker to MarkerArray
+
             except Exception as e:
                 self.get_logger().error(f"Error publishing marker for {joint_name}: {str(e)}")
+
+        # Publish markers
+        self.marker_publisher.publish(marker_array_msg)
 
 def main(args=None):
     rclpy.init(args=args)

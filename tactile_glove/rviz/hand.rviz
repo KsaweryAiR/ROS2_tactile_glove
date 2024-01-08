@@ -4,8 +4,10 @@ Panels:
     Name: Displays
     Property Tree Widget:
       Expanded:
-        - /Marker1/Topic1
-        - /Marker2/Topic1
+        - /MarkerArray1/Status1
+        - /MarkerArray1/Topic1
+        - /TextArray1/Status1
+        - /TextArray1/Topic1
       Splitter Ratio: 0.5
     Tree Height: 376
   - Class: rviz_common/Views
@@ -188,28 +190,26 @@ Visualization Manager:
         {}
       Update Interval: 0
       Value: false
-    - Class: rviz_default_plugins/Marker
+    - Class: rviz_default_plugins/MarkerArray
       Enabled: true
-      Name: Marker
+      Name: MarkerArray
       Namespaces:
         tf_markers: true
       Topic:
         Depth: 19
         Durability Policy: Volatile
-        Filter size: 10
         History Policy: Keep Last
         Reliability Policy: Reliable
         Value: /tf_markers
       Value: true
-    - Class: rviz_default_plugins/Marker
+    - Class: rviz_default_plugins/MarkerArray
       Enabled: true
-      Name: Marker
+      Name: TextArray
       Namespaces:
         tf_text: true
       Topic:
         Depth: 19
         Durability Policy: Volatile
-        Filter size: 10
         History Policy: Keep Last
         Reliability Policy: Reliable
         Value: /tf_text
