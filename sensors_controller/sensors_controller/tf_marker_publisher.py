@@ -14,7 +14,7 @@ class TFMarkerPublisher(Node):
         # Publisher for markers
         self.marker_publisher = self.create_publisher(MarkerArray, 'tf_markers', 10)
         # Subscriber for microros data
-        self.subscriber = self.create_subscription(Float64MultiArray, 'microros', self.microros_callback, 10)
+        self.subscriber = self.create_subscription(Float64MultiArray, 'glove_data', self.microros_callback, 10)
         # TF buffer and listener
         self.buffer = Buffer()
         self.tf_listener = TransformListener(self.buffer, self)
