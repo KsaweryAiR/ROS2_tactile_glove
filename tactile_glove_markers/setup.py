@@ -1,6 +1,6 @@
 from setuptools import find_packages, setup
 
-package_name = 'sensors_controller'
+package_name = 'tactile_glove_markers'
 
 setup(
     name=package_name,
@@ -20,8 +20,8 @@ setup(
     tests_require=['pytest'],
     entry_points={
         'console_scripts': [
-            'tf_marker_publisher = sensors_controller.tf_marker_publisher:main',
-            'tf_text_publisher = sensors_controller.tf_text_publisher:main',
+            'markers_sphere_publisher = tactile_glove_markers.markers_sphere_publisher:main',
+            'markers_text_publisher = tactile_glove_markers.markers_text_publisher:main',
         ],
     },
 )

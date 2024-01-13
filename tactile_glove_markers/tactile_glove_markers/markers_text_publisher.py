@@ -9,9 +9,9 @@ from tf2_ros import TransformListener, Buffer
 
 class TFTextPublisher(Node):
     def __init__(self):
-        super().__init__('tf_text_publisher')
+        super().__init__('markers_text_publisher')
         # Publisher for markers
-        self.marker_publisher = self.create_publisher(MarkerArray, 'tf_text', 10)
+        self.marker_publisher = self.create_publisher(MarkerArray, 'tf_markers_text', 10)
         # Subscriber for microros data
         self.subscriber = self.create_subscription(Float64MultiArray, 'glove_data', self.microros_callback, 10)
         # TF buffer and listener
@@ -66,7 +66,7 @@ class TFTextPublisher(Node):
                     22: {'z': -0.005, 'x': 0.001},
                     23: {'z': 0.0015, 'x': 0.001},
                     31: {'z': -0.007},
-                    32: {'z': -0.006},
+                    32: {'z': -0.005},
                     33: {'z': 0.0015, 'x': -0.0005},
                     41: {'z': -0.006, 'x': -0.001},
                     42: {'z': -0.005, 'x': -0.001},
@@ -123,9 +123,9 @@ class TFTextPublisher(Node):
 
 def main(args=None):
     rclpy.init(args=args)
-    tf_marker_publisher = TFTextPublisher()
-    rclpy.spin(tf_marker_publisher)
-    tf_marker_publisher.destroy_node()
+    markers_text_publisher = TFTextPublisher()
+    rclpy.spin(markers_text_publisher)
+    markers_text_publisher.destroy_node()
     rclpy.shutdown()
 
 if __name__ == '__main__':

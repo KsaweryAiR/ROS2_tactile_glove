@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <?xml-model href="http://download.ros.org/schema/package_format3.xsd" schematypens="http://www.w3.org/2001/XMLSchema"?>
 <package format="3">
-  <name>tactile_glove</name>
+  <name>tactile_glove_display</name>
   <version>0.0.0</version>
   <description>TODO: Package description</description>
   <maintainer email="85024534+KsaweryAiR@users.noreply.github.com">ksawery</maintainer>
@@ -14,7 +14,7 @@
   <test_depend>ament_lint_auto</test_depend>
   <test_depend>ament_lint_common</test_depend>
   <build_export_depend>rviz_common</build_export_depend>
-  <build_export_depend>tactile_glove_controller</build_export_depend>  <!-- Dodaj tę linię -->
+  <build_export_depend>tactile_glove_display_controller</build_export_depend>  <!-- Dodaj tę linię -->
 
   
   

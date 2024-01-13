@@ -3,9 +3,9 @@
 
     
  <!-- common stuff -->
- <xacro:include filename="$(find tactile_glove)/urdf/common.gazebo.xacro" />
+ <xacro:include filename="$(find tactile_glove_display)/urdf/common.gazebo.xacro" />
   
- <xacro:include filename="$(find tactile_glove)/urdf/puthand.urdf.xacro" />
+ <xacro:include filename="$(find tactile_glove_display)/urdf/puthand.urdf.xacro" />
 
  <link name="base_link" />
  

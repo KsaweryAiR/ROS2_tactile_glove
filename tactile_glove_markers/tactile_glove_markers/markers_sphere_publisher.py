@@ -10,9 +10,9 @@ import tf2_geometry_msgs  # Import for tf2_geometry_msgs transformations
 
 class TFMarkerPublisher(Node):
     def __init__(self):
-        super().__init__('tf_marker_publisher')
+        super().__init__('markers_sphere_publisher')
         # Publisher for markers
-        self.marker_publisher = self.create_publisher(MarkerArray, 'tf_markers', 10)
+        self.marker_publisher = self.create_publisher(MarkerArray, 'tf_markers_sphere', 10)
         # Subscriber for microros data
         self.subscriber = self.create_subscription(Float64MultiArray, 'glove_data', self.microros_callback, 10)
         # TF buffer and listener
@@ -34,8 +34,11 @@ class TFMarkerPublisher(Node):
         if microros_data <= 10.0:
             marker_msg.color.r = microros_data/10
             marker_msg.color.g = 1.0
-        else:
+        elif microros_data <= 20.0:
             marker_msg.color.g = (20.0 - microros_data)/10
+            marker_msg.color.r = 1.0
+        else:
+            marker_msg.color.g = 0.0
             marker_msg.color.r = 1.0
 
     def publish_markers(self):
@@ -124,9 +127,9 @@ class TFMarkerPublisher(Node):
 
 def main(args=None):
     rclpy.init(args=args)
-    tf_marker_publisher = TFMarkerPublisher()
-    rclpy.spin(tf_marker_publisher)
-    tf_marker_publisher.destroy_node()
+    markers_sphere_publisher = TFMarkerPublisher()
+    rclpy.spin(markers_sphere_publisher)
+    markers_sphere_publisher.destroy_node()
     rclpy.shutdown()
 
 if __name__ == '__main__':

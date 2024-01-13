@@ -3,8 +3,8 @@
 
 
 
-  <xacro:include filename="$(find tactile_glove)/urdf/puthand.transmission.xacro" />
-  <xacro:include filename="$(find tactile_glove)/urdf/puthand.gazebo.xacro" />
+  <xacro:include filename="$(find tactile_glove_display)/urdf/puthand.transmission.xacro" />
+  <xacro:include filename="$(find tactile_glove_display)/urdf/puthand.gazebo.xacro" />
   
   <xacro:property name="cyl_radius" value="0.001" />
   
@@ -48,13 +48,13 @@
       <visual>
 	<origin xyz="0 0 0.0" rpy="0 0 0" />
 	<geometry>
-          <mesh filename="package://tactile_glove/meshes/metacarpusNew.dae" />
+          <mesh filename="package://tactile_glove_display/meshes/metacarpusNew.dae" />
 	</geometry>
       </visual>
       <collision>
 	<origin xyz="0 0 0.0" rpy="0 0 0" />
 	<geometry>
-          <mesh filename="package://tactile_glove/meshes/metacarpusNew.dae" />
+          <mesh filename="package://tactile_glove_display/meshes/metacarpusNew.dae" />
 	</geometry>
       </collision>
       <xacro:cylinder_inertial radius="0.015" length="0.038" mass="${base_mass}">
@@ -68,13 +68,13 @@
       <visual>
 	<origin xyz="0 0 0" rpy="0 0 0" />
 	<geometry>
-          <mesh filename="package://tactile_glove/meshes/metacarpal.dae" />
+          <mesh filename="package://tactile_glove_display/meshes/metacarpal.dae" />
 	</geometry>
       </visual>
       <collision>
 	<origin xyz="0 0 0" rpy="0 0 0" />
 	<geometry>
-          <mesh filename="package://tactile_glove/meshes/metacarpal.dae" />
+          <mesh filename="package://tactile_glove_display/meshes/metacarpal.dae" />
 	</geometry>
       </collision>
       <xacro:cylinder_inertial radius="0.003" length="0.01" mass="${base_mass}">
@@ -86,13 +86,13 @@
       <visual>
 	<origin xyz="0 0 0" rpy="0 0 0" />
 	<geometry>
-          <mesh filename="package://tactile_glove/meshes/thumbProximal.dae" />
+          <mesh filename="package://tactile_glove_display/meshes/thumbProximal.dae" />
 	</geometry>
       </visual>
       <collision>
           <origin xyz="0 0 0" rpy="0 0 0" />
 	<geometry>
-          <mesh filename="package://tactile_glove/meshes/thumbProximal.dae" />
+          <mesh filename="package://tactile_glove_display/meshes/thumbProximal.dae" />
 	</geometry>
       </collision>
       <xacro:cylinder_inertial radius="0.003" length="0.01" mass="${base_mass}">
@@ -104,13 +104,13 @@
       <visual>
 	<origin xyz="0 0 0" rpy="0 0 -1.5708" />
 	<geometry>
-          <mesh filename="package://tactile_glove/meshes/thumbDistal.dae" />
+          <mesh filename="package://tactile_glove_display/meshes/thumbDistal.dae" />
 	</geometry>
       </visual>
       <collision>
           <origin xyz="0 0 0" rpy="0 0 -1.5708" />
 	<geometry>
-          <mesh filename="package://tactile_glove/meshes/thumbDistal.dae" />
+          <mesh filename="package://tactile_glove_display/meshes/thumbDistal.dae" />
 	</geometry>
       </collision>
       <xacro:cylinder_inertial radius="0.003" length="0.01" mass="${base_mass}">
@@ -167,13 +167,13 @@
       <visual>
 	<origin xyz="-0.00 -0.00 0.00" rpy="0 0 0" />
 	<geometry>
-          <mesh filename="package://tactile_glove/meshes/fingerProximal.dae" />
+          <mesh filename="package://tactile_glove_display/meshes/fingerProximal.dae" />
 	</geometry>
       </visual>
       <collision>
 	<origin xyz="-0.00 -0.00 0.00" rpy="0 0 0" />
 	<geometry>
-          <mesh filename="package://tactile_glove/meshes/fingerProximal.dae" />
+          <mesh filename="package://tactile_glove_display/meshes/fingerProximal.dae" />
 	</geometry>
       </collision>
       <xacro:cylinder_inertial radius="0.003" length="0.01" mass="${base_mass}">
@@ -185,13 +185,13 @@
       <visual>
 	<origin xyz="-0.00 -0.00 0.00" rpy="0 0 1.5708" />
 	<geometry>
-          <mesh filename="package://tactile_glove/meshes/fingerMiddle.dae" />
+          <mesh filename="package://tactile_glove_display/meshes/fingerMiddle.dae" />
 	</geometry>
       </visual>
       <collision>
           <origin xyz="-0.00 -0.00 0.00" rpy="0 0 1.5708" />
 	<geometry>
-          <mesh filename="package://tactile_glove/meshes/fingerMiddle.dae" />
+          <mesh filename="package://tactile_glove_display/meshes/fingerMiddle.dae" />
 	</geometry>
       </collision>
       <xacro:cylinder_inertial radius="0.003" length="0.01" mass="${base_mass}">
@@ -203,13 +203,13 @@
       <visual>
 	<origin xyz="-0.00 -0.00 0.00" rpy="0 0 0" />
 	<geometry>
-          <mesh filename="package://tactile_glove/meshes/fingerDistal.dae" />
+          <mesh filename="package://tactile_glove_display/meshes/fingerDistal.dae" />
 	</geometry>
       </visual>
       <collision>
           <origin xyz="-0.00 -0.0 0.00" rpy="0 0 0" />
 	<geometry>
-          <mesh filename="package://tactile_glove/meshes/fingerDistal.dae" />
+          <mesh filename="package://tactile_glove_display/meshes/fingerDistal.dae" />
 	</geometry>
       </collision>
       <xacro:cylinder_inertial radius="0.003" length="0.01" mass="${base_mass}">
@@ -266,13 +266,13 @@
       <visual>
 	<origin xyz="-0.00 -0.00 0.00" rpy="0 0 0" />
 	<geometry>
-          <mesh filename="package://tactile_glove/meshes/fingerProximal.dae" />
+          <mesh filename="package://tactile_glove_display/meshes/fingerProximal.dae" />
 	</geometry>
       </visual>
       <collision>
 	<origin xyz="-0.00 -0.00 0.00" rpy="0 0 0" />
 	<geometry>
-          <mesh filename="package://tactile_glove/meshes/fingerProximal.dae" />
+          <mesh filename="package://tactile_glove_display/meshes/fingerProximal.dae" />
 	</geometry>
       </collision>
       <xacro:cylinder_inertial radius="0.003" length="0.01" mass="${base_mass}">
@@ -284,13 +284,13 @@
       <visual>
 	<origin xyz="-0.00 -0.00 0.00" rpy="0 0 1.5708" />
 	<geometry>
-          <mesh filename="package://tactile_glove/meshes/fingerMiddle.dae" />
+          <mesh filename="package://tactile_glove_display/meshes/fingerMiddle.dae" />
 	</geometry>
       </visual>
       <collision>
           <origin xyz="-0.00 -0.00 0.00" rpy="0 0 1.5708" />
 	<geometry>
-          <mesh filename="package://tactile_glove/meshes/fingerMiddle.dae" />
+          <mesh filename="package://tactile_glove_display/meshes/fingerMiddle.dae" />
 	</geometry>
       </collision>
       <xacro:cylinder_inertial radius="0.003" length="0.01" mass="${base_mass}">
@@ -302,13 +302,13 @@
       <visual>
 	<origin xyz="-0.00 -0.00 0.00" rpy="0 0 0" />
 	<geometry>
-          <mesh filename="package://tactile_glove/meshes/fingerDistal.dae" />
+          <mesh filename="package://tactile_glove_display/meshes/fingerDistal.dae" />
 	</geometry>
       </visual>
       <collision>
           <origin xyz="-0.00 -0.00 0.00" rpy="0 0 0" />
 	<geometry>
-          <mesh filename="package://tactile_glove/meshes/fingerDistal.dae" />
+          <mesh filename="package://tactile_glove_display/meshes/fingerDistal.dae" />
 	</geometry>
       </collision>
       <xacro:cylinder_inertial radius="0.003" length="0.01" mass="${base_mass}">
@@ -363,13 +363,13 @@
       <visual>
 	<origin xyz="-0.00 -0.00 0.00" rpy="0 0 0" />
 	<geometry>
-          <mesh filename="package://tactile_glove/meshes/f4phalanx1.dae" />
+          <mesh filename="package://tactile_glove_display/meshes/f4phalanx1.dae" />
 	</geometry>
       </visual>
       <collision>
 	<origin xyz="-0.00 -0.00 0.00" rpy="0 0 0" />
 	<geometry>
-          <mesh filename="package://tactile_glove/meshes/f4phalanx1.dae" />
+          <mesh filename="package://tactile_glove_display/meshes/f4phalanx1.dae" />
 	</geometry>
       </collision>
       <xacro:cylinder_inertial radius="0.003" length="0.01" mass="${ring1_mass}">
@@ -381,13 +381,13 @@
       <visual>
 	<origin xyz="-0.00 -0.00 0.00" rpy="0 0 0" />
 	<geometry>
-          <mesh filename="package://tactile_glove/meshes/f4phalanx2.dae" />
+          <mesh filename="package://tactile_glove_display/meshes/f4phalanx2.dae" />
 	</geometry>
       </visual>
       <collision>
           <origin xyz="-0.00 -0.00 0.00" rpy="0 0 0" />
 	<geometry>
-          <mesh filename="package://tactile_glove/meshes/f4phalanx2.dae" />
+          <mesh filename="package://tactile_glove_display/meshes/f4phalanx2.dae" />
 	</geometry>
       </collision>
       <xacro:cylinder_inertial radius="0.003" length="0.01" mass="${ring2_mass}">
@@ -399,13 +399,13 @@
       <visual>
 	<origin xyz="-0.00 -0.00 0.00" rpy="0 0 0" />
 	<geometry>
-          <mesh filename="package://tactile_glove/meshes/f45phalanx3.dae" />
+          <mesh filename="package://tactile_glove_display/meshes/f45phalanx3.dae" />
 	</geometry>
       </visual>
       <collision>
           <origin xyz="-0.00 -0.00 0.00" rpy="0 0 0" />
 	<geometry>
-          <mesh filename="package://tactile_glove/meshes/f45phalanx3.dae" />
+          <mesh filename="package://tactile_glove_display/meshes/f45phalanx3.dae" />
 	</geometry>
       </collision>
       <xacro:cylinder_inertial radius="0.003" length="0.01" mass="${ring3_mass}">
@@ -460,13 +460,13 @@
       <visual>
 	<origin xyz="-0.00 -0.00 0.00" rpy="0 0 0" />
 	<geometry>
-          <mesh filename="package://tactile_glove/meshes/f5phalanx1.dae" />
+          <mesh filename="package://tactile_glove_display/meshes/f5phalanx1.dae" />
 	</geometry>
       </visual>
       <collision>
 	<origin xyz="-0.00 -0.00 0.00" rpy="0 0 0" />
 	<geometry>
-          <mesh filename="package://tactile_glove/meshes/f5phalanx1.dae" />
+          <mesh filename="package://tactile_glove_display/meshes/f5phalanx1.dae" />
 	</geometry>
       </collision>
       <xacro:cylinder_inertial radius="0.003" length="0.01" mass="${pinky1_mass}">
@@ -478,13 +478,13 @@
       <visual>
 	<origin xyz="-0.00 -0.00 0.00" rpy="0 0 0" />
 	<geometry>
-          <mesh filename="package://tactile_glove/meshes/f5phalanx2.dae" />
+          <mesh filename="package://tactile_glove_display/meshes/f5phalanx2.dae" />
 	</geometry>
       </visual>
       <collision>
           <origin xyz="-0.00 -0.00 0.00" rpy="0 0 0" />
 	<geometry>
-          <mesh filename="package://tactile_glove/meshes/f5phalanx2.dae" />
+          <mesh filename="package://tactile_glove_display/meshes/f5phalanx2.dae" />
 	</geometry>
       </collision>
       <xacro:cylinder_inertial radius="0.003" length="0.01" mass="${pinky2_mass}">
@@ -496,13 +496,13 @@
       <visual>
 	<origin xyz="-0.00 -0.00 0.00" rpy="0 0 0" />
 	<geometry>
-          <mesh filename="package://tactile_glove/meshes/f45phalanx3.dae" />
+          <mesh filename="package://tactile_glove_display/meshes/f45phalanx3.dae" />
 	</geometry>
       </visual>
       <collision>
           <origin xyz="-0.00 -0.00 0.00" rpy="0 0 0" />
 	<geometry>
-          <mesh filename="package://tactile_glove/meshes/f45phalanx3.dae" />
+          <mesh filename="package://tactile_glove_display/meshes/f45phalanx3.dae" />
 	</geometry>
       </collision>
       <xacro:cylinder_inertial radius="0.003" length="0.01" mass="${pinky3_mass}">

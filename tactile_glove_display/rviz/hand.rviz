@@ -192,7 +192,7 @@ Visualization Manager:
       Value: false
     - Class: rviz_default_plugins/MarkerArray
       Enabled: true
-      Name: MarkerArray
+      Name: ForceColor
       Namespaces:
         tf_markers: true
       Topic:
@@ -200,11 +200,11 @@ Visualization Manager:
         Durability Policy: Volatile
         History Policy: Keep Last
         Reliability Policy: Reliable
-        Value: /tf_markers
+        Value: /tf_markers_sphere
       Value: true
     - Class: rviz_default_plugins/MarkerArray
       Enabled: true
-      Name: TextArray
+      Name: ForceValue
       Namespaces:
         tf_text: true
       Topic:
@@ -212,7 +212,7 @@ Visualization Manager:
         Durability Policy: Volatile
         History Policy: Keep Last
         Reliability Policy: Reliable
-        Value: /tf_text
+        Value: /tf_markers_text
       Value: true
   Enabled: true
   Global Options:

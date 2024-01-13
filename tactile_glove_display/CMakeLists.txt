@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.8)
-project(tactile_glove)
+project(tactile_glove_display)
 
 find_package(ament_cmake REQUIRED)
 
