@@ -45,25 +45,28 @@ class TFMarkerPublisher(Node):
         marker_array_msg = MarkerArray()
         # List of finger joints and their corresponding IDs
         finger_joints = [
-            ('left_hand_thumb1', 15),
+            # M1
+            ('left_hand_ring3', 41),
+            ('left_hand_ring2', 42),
+            ('left_hand_ring1', 43),
+            ('left_hand_pinky3', 51),
+            ('left_hand_pinky2', 52),
+            ('left_hand_pinky1', 53),
+            # M2
+            ('left_hand_index3', 21),     
+            ('left_hand_index2', 22),  
+            ('left_hand_index1', 23),   
+            ('left_hand_middle3', 31),
+            ('left_hand_middle2', 32),
+            ('left_hand_middle1', 33),
+            # M3
             ('left_hand_thumb3', 11),
-            ('left_hand_base_link', 12),
+            ('left_hand_thumb1', 12),
             ('left_hand_base_link', 13),
             ('left_hand_base_link', 14),
+            ('left_hand_base_link', 15),  
             ('left_hand_base_link', 16),
-            ('left_hand_base_link', 17),
-            ('left_hand_index1', 23),
-            ('left_hand_index2', 22),
-            ('left_hand_index3', 21),
-            ('left_hand_middle1', 33),
-            ('left_hand_middle2', 32),
-            ('left_hand_middle3', 31),
-            ('left_hand_ring1', 43),
-            ('left_hand_ring2', 42),
-            ('left_hand_ring3', 41),
-            ('left_hand_pinky1', 53),
-            ('left_hand_pinky2', 52),
-            ('left_hand_pinky3', 51)
+            ('left_hand_base_link', 17)
         ]
 
         for i, (joint_name, joint_id) in enumerate(finger_joints):
@@ -78,12 +81,12 @@ class TFMarkerPublisher(Node):
                     43: {'z': 0.005},
                     53: {'z': 0.005},
                     11: {'z': 0.003},
-                    12: {'x': -0.022, 'z': 0.105},
-                    13: {'x': 0.011, 'z': 0.105},
-                    14: {'x': 0.042, 'z': 0.1},
-                    15: {'x': -0.007, 'z': 0.003},
-                    16: {'z': 0.07},
-                    17: {'x': 0.038, 'z': 0.06},
+                    12: {'x': -0.007, 'z': 0.003},
+                    13: {'x': -0.022, 'z': 0.105},
+                    14: {'z': 0.07}, 
+                    15: {'x': 0.011, 'z': 0.105}, 
+                    16: {'x': 0.038, 'z': 0.06},
+                    17: {'x': 0.042, 'z': 0.1},
                 }
                 if joint_id in joint_corrections:
                     corrections = joint_corrections[joint_id]

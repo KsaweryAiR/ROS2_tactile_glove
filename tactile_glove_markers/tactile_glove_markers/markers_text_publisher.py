@@ -30,25 +30,28 @@ class TFTextPublisher(Node):
         marker_array_msg = MarkerArray()
         # List of finger joints and their corresponding IDs
         finger_joints = [
-            ('left_hand_thumb1', 15),
+            # M1
+            ('left_hand_ring3', 41),
+            ('left_hand_ring2', 42),
+            ('left_hand_ring1', 43),
+            ('left_hand_pinky3', 51),
+            ('left_hand_pinky2', 52),
+            ('left_hand_pinky1', 53),
+            # M2
+            ('left_hand_index3', 21),     
+            ('left_hand_index2', 22),  
+            ('left_hand_index1', 23),   
+            ('left_hand_middle3', 31),
+            ('left_hand_middle2', 32),
+            ('left_hand_middle1', 33),
+            # M3
             ('left_hand_thumb3', 11),
-            ('left_hand_base_link', 12),
+            ('left_hand_thumb1', 12),
             ('left_hand_base_link', 13),
             ('left_hand_base_link', 14),
+            ('left_hand_base_link', 15),  
             ('left_hand_base_link', 16),
-            ('left_hand_base_link', 17),
-            ('left_hand_index1', 23),
-            ('left_hand_index2', 22),
-            ('left_hand_index3', 21),
-            ('left_hand_middle1', 33),
-            ('left_hand_middle2', 32),
-            ('left_hand_middle3', 31),
-            ('left_hand_ring1', 43),
-            ('left_hand_ring2', 42),
-            ('left_hand_ring3', 41),
-            ('left_hand_pinky1', 53),
-            ('left_hand_pinky2', 52),
-            ('left_hand_pinky3', 51)
+            ('left_hand_base_link', 17)
         ]
 
         # Check if microros_data attribute exists
@@ -75,12 +78,12 @@ class TFTextPublisher(Node):
                     52: {'z': -0.004, 'x': -0.002},
                     53: {'z': 0.0017, 'x': -0.002},
                     11: {'z': 0.001, 'x': 0.003},
-                    12: {'z': 0.103, 'x': -0.021},
-                    13: {'z': 0.103, 'x': 0.011},
-                    14: {'z': 0.0985, 'x': 0.042},
-                    15: {'z': 0.002, 'x': -0.006},
-                    16: {'z': 0.069},
-                    17: {'z': 0.059, 'x': 0.037},
+                    12: {'z': 0.002, 'x': -0.006},
+                    13: {'z': 0.103, 'x': -0.021},
+                    14: {'z': 0.069},
+                    15: {'z': 0.103, 'x': 0.011},
+                    16: {'z': 0.059, 'x': 0.037},
+                    17: {'z': 0.0985, 'x': 0.042},
                 }
                 if joint_id in joint_corrections:
                     corrections = joint_corrections[joint_id]
@@ -114,6 +117,7 @@ class TFTextPublisher(Node):
                 marker_msg.color.a = 1.0
 
                 marker_msg.text = str(round(self.microros_data[i],1))
+                #marker_msg.text = str(joint_id)
                 marker_array_msg.markers.append(marker_msg)
             except Exception as e:
                 self.get_logger().error(f"Error publishing marker for {joint_name}: {str(e)}")
