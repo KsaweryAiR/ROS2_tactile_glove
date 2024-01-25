@@ -18,7 +18,7 @@ class TFTextPublisher(Node):
         self.buffer = Buffer()
         self.tf_listener = TransformListener(self.buffer, self)
         # Timer for periodic marker publishing
-        self.timer = self.create_timer(0.1, self.publish_markers)
+        self.timer = self.create_timer(0.05, self.publish_markers)
         # Initialize microros data array
         self.microros_data = np.zeros(19)
 
